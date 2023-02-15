@@ -4,6 +4,11 @@
  */
 package ljubavnikalkulator;
 
+import java.util.Arrays;
+import java.util.Scanner;
+import static ljubavnikalkulator.LjubavniKalkulator.ljubav;
+import static ljubavnikalkulator.LjubavniKalkulator.rasclaniBroj;
+
 /**
  *
  * @author Marko
@@ -26,26 +31,22 @@ public class LjubavniKalkulatorCode extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnLjubavni = new javax.swing.JButton();
         btnIme1 = new javax.swing.JButton();
-        lblIspis = new javax.swing.JLabel();
-        txtime = new javax.swing.JTextField();
         btnIme2 = new javax.swing.JButton();
-        txtime2 = new javax.swing.JTextField();
-        lblIspis2 = new javax.swing.JLabel();
-        lblIspis3 = new javax.swing.JLabel();
+        lblime2 = new javax.swing.JLabel();
         btnIzracun = new javax.swing.JButton();
         lblIspisIzracuna = new javax.swing.JLabel();
+        txt1 = new javax.swing.JTextField();
+        lblIme1 = new javax.swing.JLabel();
+        txt2 = new javax.swing.JTextField();
+        txtIspis = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFont(new java.awt.Font("Book Antiqua", 0, 12)); // NOI18N
+        setForeground(java.awt.Color.red);
 
-        btnLjubavni.setText("Ljubavni Kalkulator");
-        btnLjubavni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLjubavniActionPerformed(evt);
-            }
-        });
-
+        btnIme1.setBackground(new java.awt.Color(255, 0, 0));
+        btnIme1.setFont(new java.awt.Font("Arial Black", 2, 14)); // NOI18N
         btnIme1.setText("Unesi prvo ime");
         btnIme1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,12 +54,8 @@ public class LjubavniKalkulatorCode extends javax.swing.JFrame {
             }
         });
 
-        txtime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtimeActionPerformed(evt);
-            }
-        });
-
+        btnIme2.setBackground(new java.awt.Color(255, 0, 0));
+        btnIme2.setFont(new java.awt.Font("Arial Black", 2, 14)); // NOI18N
         btnIme2.setText("Unesi drugo ime");
         btnIme2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,105 +63,240 @@ public class LjubavniKalkulatorCode extends javax.swing.JFrame {
             }
         });
 
-        btnIzracun.setText("Izračunaj %");
+        btnIzracun.setBackground(new java.awt.Color(0, 0, 0));
+        btnIzracun.setFont(new java.awt.Font("Segoe UI Black", 3, 14)); // NOI18N
+        btnIzracun.setForeground(new java.awt.Color(255, 0, 0));
+        btnIzracun.setText("% Ljubav %");
         btnIzracun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIzracunActionPerformed(evt);
             }
         });
 
+        txt1.setBackground(new java.awt.Color(51, 51, 255));
+        txt1.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
+
+        txt2.setBackground(new java.awt.Color(255, 153, 153));
+        txt2.setFont(new java.awt.Font("Serif", 3, 14)); // NOI18N
+
+        txtIspis.setBackground(new java.awt.Color(255, 0, 0));
+        txtIspis.setFont(new java.awt.Font("Serif", 3, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(txtime2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtime, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(btnIme2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIme1)
-                .addGap(47, 47, 47))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(lblIspis2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblIspis3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIzracun)
-                .addGap(326, 326, 326))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(lblIspis, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(btnLjubavni, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(361, 361, 361)
-                        .addComponent(lblIspisIzracuna, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(234, Short.MAX_VALUE))
+                        .addComponent(lblIspisIzracuna, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt2)
+                            .addComponent(btnIme2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnIme1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblime2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(lblIme1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIzracun, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIspis, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnLjubavni, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblIspis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblIspis2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIspis3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIme1)
-                    .addComponent(btnIme2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtime2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnIzracun)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnIme1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIme1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblime2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnIme2, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnIzracun, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIspis, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(161, 161, 161)))
                 .addComponent(lblIspisIzracuna, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLjubavniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLjubavniActionPerformed
-lblIspis.setText("Dobrodošli u Aplikaciju Ljubavni Kalkulator <3");
-    }//GEN-LAST:event_btnLjubavniActionPerformed
-
+	
+    
+    
+ 
     private void btnIme1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIme1ActionPerformed
-       lblIspis3.setText(txtime.getText());
+     lblIme1.setText(txt1.getText());
     }//GEN-LAST:event_btnIme1ActionPerformed
 
-    private void txtimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtimeActionPerformed
-
     private void btnIme2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIme2ActionPerformed
-       lblIspis2.setText(txtime2.getText());
+       lblime2.setText(txt2.getText());
     }//GEN-LAST:event_btnIme2ActionPerformed
 
     private void btnIzracunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzracunActionPerformed
- 
+  btnIme1.setText(btnIzracun.getText());
+ String ime1=txt1.getText();
+    String Ime2=txt2.getText();
+    String ljubavniPostotak = txtIspis.getText();
+		for (int i : ljubav(brojevi(ime1, Ime2))) {
+			ljubavniPostotak += i;
+                       txtIspis.setText(  ljubavniPostotak + "%");
+		}
+       }
+private static int[] brojevi(String ime1, String ime2) {
+
+		String skupa = ime1.toLowerCase() + ime2.toLowerCase();
+		int brojac = 0;
+		int[] brojevi = new int[skupa.length()];
+		char[] imena = (skupa.toCharArray());
+
+		for (int i = 0; i < skupa.length(); i++) {
+			brojac = 0;
+			for (int j = 0; j < skupa.length(); j++) {
+				if (skupa.charAt(i) == skupa.charAt(j)) {
+
+					brojac++;
+				}
+			}
+			brojevi[i] = brojac;
+		}
+                brojevi = podijeliBroj(brojevi);
+
+		if (ime1.length() >= ime2.length()) {
+			int[] srednjiNiz = new int[ime1.length()];
+			for (int i = 0; i < ime1.length(); i++) {
+				if (i >= ime2.length()) {
+					srednjiNiz[i] = brojevi[brojevi.length - (i + 1)];
+				} else {
+					srednjiNiz[i] = brojevi[i] + brojevi[brojevi.length - (1 + i)];
+				}
+			}
+
+			return podijeliBroj(srednjiNiz);
+		} else {
+			int[] srednjiNiz = new int[ime2.length()];
+			for (int i = 0; i < ime2.length(); i++) {
+				if (i >= ime1.length()) {
+					srednjiNiz[i] = brojevi[brojevi.length - (1 + i)];
+				} else {
+					srednjiNiz[i] = brojevi[i] + brojevi[brojevi.length - (1 + i)];
+				}
+			}
+			return podijeliBroj(srednjiNiz);
+                }
+}
+
+	public static int[] ljubav(int[] niz) {
+
+		if (niz.length <= 2) {
+			return niz;
+		} else {
+			if (niz.length % 2 == 0) {
+				int[] dodatniNiz = new int[niz.length / 2];
+				for (int i = 0; i < dodatniNiz.length; i++) {
+					dodatniNiz[i] = niz[i] + niz[niz.length - (1 + i)];
+				}
+				dodatniNiz = podijeliBroj(dodatniNiz);
+
+				if (dodatniNiz.length > 2) {
+					return ljubav(dodatniNiz);
+				} else {
+					return ljubav(dodatniNiz);
+				}
+			} else {
+				int[] dodatniNiz = new int[(niz.length / 2) + 1];
+				for (int i = 0; i < dodatniNiz.length; i++) {
+					if (i == dodatniNiz.length - 1) {
+						dodatniNiz[i] = 0 + niz[niz.length - (1 + i)];
+					} else {
+						dodatniNiz[i] = niz[i] + niz[niz.length - (1 + i)];
+					}
+				}
+
+				if (dodatniNiz.length > 2) {
+					return ljubav(podijeliBroj(dodatniNiz));
+				} else {
+					return ljubav(podijeliBroj(dodatniNiz));
+				}
+			}
+		}
+
+	}
+
+	public static int[] podijeliBroj(int[] niz) {
+		int brojac = 0;
+		for (int i : niz) {
+			if (i >= 10) {
+				brojac++;
+			}
+		}
+		int[] dodatniNiz = new int[niz.length + brojac];
+
+		for (int i = 0, j = 0; i < niz.length; i++) {
+			if (niz[i] < 10) {
+				dodatniNiz[j++] = niz[i];
+			} else {
+				dodatniNiz[j++] = (niz[i] / 10);
+				dodatniNiz[j++] = (niz[i] % 10);
+			}
+                        
+                       
+		}
+
+   
+            
+            
+
+                
+return dodatniNiz;
+
+
+
+         
+
+
+			
+	
+
+   
+		
     }//GEN-LAST:event_btnIzracunActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+         
+	
+ 
+
+		
+
+                
+                
+               
+	
+                
+                
+               
+	
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -194,18 +326,20 @@ lblIspis.setText("Dobrodošli u Aplikaciju Ljubavni Kalkulator <3");
                 new LjubavniKalkulatorCode().setVisible(true);
             }
         });
+        
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIme1;
     private javax.swing.JButton btnIme2;
     private javax.swing.JButton btnIzracun;
-    private javax.swing.JButton btnLjubavni;
-    private javax.swing.JLabel lblIspis;
-    private javax.swing.JLabel lblIspis2;
-    private javax.swing.JLabel lblIspis3;
+    private javax.swing.JLabel lblIme1;
     private javax.swing.JLabel lblIspisIzracuna;
-    private javax.swing.JTextField txtime;
-    private javax.swing.JTextField txtime2;
+    private javax.swing.JLabel lblime2;
+    private javax.swing.JTextField txt1;
+    private javax.swing.JTextField txt2;
+    private javax.swing.JTextField txtIspis;
     // End of variables declaration//GEN-END:variables
 }
+
