@@ -328,7 +328,7 @@ return dodatniNiz;
         });
         
     }
-
+// dodati sliku
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIme1;
