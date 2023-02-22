@@ -6,7 +6,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mariadb://localhost/edunovajp27hibe</property>
+    <property name="connection.url">jdbc:mariadb://localhost/edunovajp27hib</property>
     <property name="dialect">org.hibernate.dialect.MariaDBDialect</property>
     <property name="connection.username">root</property>
     <property name="connection.password"></property>
@@ -16,6 +16,10 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
    <mapping class="edunova.model.Osoba" />
+   <mapping class="edunova.model.Smjer" />
+   <mapping class="edunova.model.Grupa" />
+   <mapping class="edunova.model.Predavac" />
+   <mapping class="edunova.model.Polaznik" />
   </session-factory>
 </hibernate-configuration>
 

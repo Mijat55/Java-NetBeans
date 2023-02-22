@@ -23,6 +23,11 @@ public class Osoba {
             length = 50
     )
     private String ime;
+       @Column(
+            name = "prezimeosobe",
+            nullable = false, 
+            length = 70
+    )
     private String prezime;
     @Column(columnDefinition = "decimal(18,2)")
     private BigDecimal primanja;
