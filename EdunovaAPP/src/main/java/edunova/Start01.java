@@ -13,7 +13,7 @@ import edunova.util.PocetniInsert;
 public class Start01 {
 
     public static void main(String[] args) {
-        PocetniInsert.izvedi();
+        new PocetniInsert();
     }
     }
 

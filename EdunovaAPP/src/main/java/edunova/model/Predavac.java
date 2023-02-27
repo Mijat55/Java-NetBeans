@@ -4,19 +4,19 @@
  */
 package edunova.model;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.ManyToOne;
+
+
 
 @Entity
-public class Predavac {
-    @Id
-    @Column(
-            name = "nazivIbana",
-            length = 50)
+public class Predavac extends Entitet{
     
-    private String iban;
-   
+	private String iban;
+	@ManyToOne
+	private Osoba osoba;
 
     public String getIban() {
         return iban;
@@ -26,8 +26,23 @@ public class Predavac {
         this.iban = iban;
     }
 
+    public Osoba getOsoba() {
+        return osoba;
+    }
+
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
+    }
+        
+
+	
+
+	
+	}
+
+	
     
     
   
     
-}
+

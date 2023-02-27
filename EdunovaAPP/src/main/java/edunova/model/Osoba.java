@@ -4,83 +4,72 @@
  */
 package edunova.model;
 
-import jakarta.persistence.Column;
+
+
+
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import java.math.BigDecimal;
-import java.util.Date;
+
+
 
 @Entity
-public class Osoba {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer sifra;
-     @Column(
-            name = "imeosobe",
-            nullable = false, 
-            length = 50
-    )
+public  class Osoba extends Entitet {
+   
     private String ime;
-       @Column(
-            name = "prezimeosobe",
-            nullable = false, 
-            length = 70
-    )
-    private String prezime;
-    @Column(columnDefinition = "decimal(18,2)")
-    private BigDecimal primanja;
-    private Boolean aktivan;
-     @Column(columnDefinition = "datetime")
-    private Date datumRodenja;
+	private String prezime;
+	private String oib;
+	private String email;
+        
+       
 
-    public Integer getSifra() {
-        return sifra;
-    }
+	public Osoba() {
+		super();
+	}
 
-    public void setSifra(Integer sifra) {
-        this.sifra = sifra;
-    }
+	public Osoba(int sifra, String ime, String prezime, String oib, String email) {
+		super(sifra);
+		this.ime = ime;
+		this.prezime = prezime;
+		this.oib = oib;
+		this.email = email;
+	}
 
-    public String getIme() {
-        return ime;
-    }
+	public String getIme() {
+		return ime;
+	}
 
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
 
-    public String getPrezime() {
-        return prezime;
-    }
+	public String getPrezime() {
+		return prezime;
+	}
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
 
-    public BigDecimal getPrimanja() {
-        return primanja;
-    }
+	public String getOib() {
+		return oib;
+	}
 
-    public void setPrimanja(BigDecimal primanja) {
-        this.primanja = primanja;
-    }
+	public void setOib(String oib) {
+		this.oib = oib;
+	}
 
-    public Boolean getAktivan() {
-        return aktivan;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setAktivan(Boolean aktivan) {
-        this.aktivan = aktivan;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Date getDatumRodenja() {
-        return datumRodenja;
-    }
-
-    public void setDatumRodenja(Date datumRodenja) {
-        this.datumRodenja = datumRodenja;
-    }
+	@Override
+	public String toString() {
+		return ime + " " + prezime;
+	}
+   
     
 }

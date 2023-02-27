@@ -10,7 +10,11 @@ import edunova.model.Osoba;
 import edunova.model.Polaznik;
 import edunova.model.Predavac;
 import edunova.model.Smjer;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import org.hibernate.Session;
 
@@ -20,97 +24,127 @@ import org.hibernate.Session;
  */
 public class PocetniInsert {
 
-    /**
-     *
-     */
-    public static void izvedi(){
-        Session session = HibernateUtil.getSession();
-        Faker faker = new Faker();
-        
-        Osoba o;
+    private static final int BROJ_SMJEROVA = 15;
+    private static final int BROJ_PREDAVACA = 7;
+    private static final int BROJ_POLAZNIKA = 3000;
+    private static final int BROJ_GRUPA = 220;
+    private static final int BROJ_OSOBA = 3007;
+
+    private Faker faker;
+    private List<Smjer> smjerovi;
+    private List<Polaznik> polaznici;
+    private List<Predavac> predavaci;
+    private List<Osoba> osobe;
+    private Session session;
+
+    public PocetniInsert() {
+        faker = new Faker();
+        smjerovi = new ArrayList<>();
+        polaznici = new ArrayList<>();
+        predavaci = new ArrayList<>();
+        osobe = new ArrayList<>();
+        session = HibernateUtil.getSession();
         session.beginTransaction();
-        for(int i=0;i<100;i++){
-            o = new Osoba();
-            o.setIme(faker.name().firstName());
-            o.setPrezime(faker.name().lastName());
-            o.setPrimanja(new BigDecimal(faker.number().randomNumber()));
-            o.setDatumRodenja(faker.date().birthday());
-            o.setAktivan(faker.bool().bool());
-            
-            session.persist(o);
-            
-        }
+        kreirajSmjerove();
+        kreirajPredavace();
+        kreirajPolaznike();
+        kreirajGrupe();
+        kreirajOsobe();
         session.getTransaction().commit();
-        
-    
-        
-        
-        
     }
-    
-    public static void izvediSmjer (){
-         Session session = HibernateUtil.getSession();
-        Faker faker = new Faker();
-        
+
+    private void kreirajSmjerove() {
         Smjer s;
-        session.beginTransaction();
-        for(int i=0;i<100;i++){
+        for (int i = 0; i < BROJ_SMJEROVA; i++) {
             s = new Smjer();
-            s.setNaziv(faker.name().name());
-            s.setCijena(new BigDecimal(faker.number().randomNumber()));
-            s.setUpisnina(new BigDecimal(faker.number().randomNumber()));
-            s.setTrajanje(faker.number().numberBetween(1, 5));
+            s.setNaziv(faker.app().name());
             s.setCertificiran(faker.bool().bool());
+            s.setCijena(new BigDecimal(faker.number().numberBetween(800, 1200)));
+            s.setUpisnina(new BigDecimal(faker.number().numberBetween(70, 90)));
+            s.setTrajanje(faker.number().numberBetween(90, 230));
             session.persist(s);
+            smjerovi.add(s);
         }
-        session.getTransaction().commit();
-        
     }
-    
-    
-    public static void izvediPredavaca (){
-        Session session = HibernateUtil.getSession();
-        Faker faker = new Faker();
+
+    private void kreirajPredavace() {
         
-        Predavac p;
-        session.beginTransaction();
-        for(int i=0;i<100;i++){
-            p = new Predavac();
-            p.setIban(faker.code().imei());
+        Predavac pr;
+        for (int i = 0; i < BROJ_PREDAVACA; i++) {
+            pr = new Predavac();
             
+                
+            try{
+            pr.setOsoba(osobe.get(sb(0, BROJ_OSOBA-1)));
+            }catch (IndexOutOfBoundsException ex) {
+            ex.getMessage();
+            }
+            
+            pr.setIban(faker.business().creditCardNumber());
+            session.persist(pr);
+            predavaci.add(pr);
+        
+        
+        }
+    }
+    
+    private void kreirajPolaznike() {
+        Polaznik p;
+        for (int i = 0; i < BROJ_POLAZNIKA; i++) {
+            p = new Polaznik();
+            try{
+            p.setOsoba(osobe.get(sb(0, BROJ_OSOBA-1)));
+            }catch (IndexOutOfBoundsException ex) {
+            ex.getMessage();
+            }
+            p.setBrojUgovora(faker.business().creditCardNumber());
             session.persist(p);
+            polaznici.add(p);
         }
-         session.getTransaction().commit();
     }
-    public static void izvediPolaznika (){
-       Session session = HibernateUtil.getSession();
-        Faker faker = new Faker();
-        
-        Polaznik k;
-        session.beginTransaction();
-        for(int i=0;i<100;i++){
-            k = new Polaznik();
-            k.setBrojUgovora(new BigDecimal(faker.number().randomNumber()));
-           
-            session.persist(k);
-        }
-        session.getTransaction().commit();
-    }
-    public static void izvediGrupu (){
-       Session session = HibernateUtil.getSession();
-        Faker faker = new Faker();
-        
+    
+    private void kreirajGrupe(){
         Grupa g;
-         session.beginTransaction();
-        for(int i=0;i<100;i++){
+        List<Polaznik> p;
+       
+        for(int i=0;i<BROJ_GRUPA;i++){
             g = new Grupa();
-            g.setNaziv(faker.name().name());
-            g.setDatumPocetka(faker.date().future(i, TimeUnit.DAYS));
+            g.setNaziv(faker.beer().name() + " " + (i+1));
+            g.setDatumPocetka(faker.date().birthday(1, 10));
+            g.setSmjer(smjerovi.get(sb(0,BROJ_SMJEROVA-1)));
+            g.setPredavac(predavaci.get(sb(0,BROJ_PREDAVACA-1)));
+            p = new ArrayList<>();
+            
+            for(int j=0;j<sb(5,20);j++){
+                p.add(polaznici.get(sb(0,BROJ_POLAZNIKA-1)));
+            }
+            
+            g.setPolaznici(p);
+            
+            
             
             session.persist(g);
+            
+            
         }
-        session.getTransaction().commit();
-        
+    }
+    
+      private void kreirajOsobe() {
+        Osoba o;
+        for (int i = 0; i < BROJ_OSOBA; i++) {
+            o = new Osoba();
+            o.setOib(Alati.dovuciOib());
+            o.setIme(faker.name().firstName());
+            o.setPrezime(faker.name().lastName());
+            o.setEmail(faker.internet().emailAddress());
+            
+            session.persist(o);
+            osobe.add(o);
+        }
+    }
+    
+    private int sb(int min, int max){
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
     
 }

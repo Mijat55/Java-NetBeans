@@ -4,28 +4,39 @@
  */
 package edunova.model;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import java.math.BigDecimal;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import java.util.List;
+
 
 @Entity
-public class Polaznik {
-    @Id
-     @Column(columnDefinition = "decimal(18,2)")
-    private BigDecimal brojUgovora;
+public class Polaznik extends Entitet{
+  
     
+private String brojUgovora;
+	
+	
+	@ManyToOne
+	private Osoba osoba;
 
-    public BigDecimal getBrojUgovora() {
+    public String getBrojUgovora() {
         return brojUgovora;
     }
 
-    public void setBrojUgovora(BigDecimal brojUgovora) {
+    public void setBrojUgovora(String brojUgovora) {
         this.brojUgovora = brojUgovora;
     }
 
-    
+    public Osoba getOsoba() {
+        return osoba;
+    }
 
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
+    }
+	
    
     
     
